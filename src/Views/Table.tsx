@@ -47,41 +47,41 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
   );
 };
 
-const ProjectRow2: React.FC<ProjectRowProps2> = ({
-  src,
-  name,
-  gmail,
-  role,
-  dept,
-  status,
-  employed,
-  button,
-}) => {
-  return (
-    <div className="grid grid-cols-6 md:py-[1vw] py-3 md:text-[1vw] text-[10px] text-white items-center">
-      <div className="flex items-center  md:gap-[.75vw] gap-2 col-span-2">
-        <img
-          src={src}
-          alt=""
-          className="md:h-[3vw] h-10  md:w-[3vw] w-10  rounded-md object-cover"
-        />
-        <div>
-          <h2 className="truncate">{name}</h2>
-          <h2 className="truncate">{gmail}</h2>
-        </div>
-      </div>
-      <div className="flex flex-col ">
-        <h2 className="">{role}</h2>
-        <h2 className="  md:text-[1.1vw] text-sm text-gray-400">{dept}</h2>
-      </div>
-      {/* hide status and employed on mobile */}
-      <h2 className="hidden sm:block">{status}</h2>
-      <h2 className="hidden sm:block">{employed}</h2>
-      {/* hide edit button on mobile */}
-      <div className="flex justify-center hidden sm:flex">{button}</div>
-    </div>
-  );
-};
+// const ProjectRow2: React.FC<ProjectRowProps2> = ({
+//   src,
+//   name,
+//   gmail,
+//   role,
+//   dept,
+//   status,
+//   employed,
+//   button,
+// }) => {
+//   return (
+//     <div className="grid grid-cols-6 md:py-[1vw] py-3 md:text-[1vw] text-[10px] text-white items-center">
+//       <div className="flex items-center  md:gap-[.75vw] gap-2 col-span-2">
+//         <img
+//           src={src}
+//           alt=""
+//           className="md:h-[3vw] h-10  md:w-[3vw] w-10  rounded-md object-cover"
+//         />
+//         <div>
+//           <h2 className="truncate">{name}</h2>
+//           <h2 className="truncate">{gmail}</h2>
+//         </div>
+//       </div>
+//       <div className="flex flex-col ">
+//         <h2 className="">{role}</h2>
+//         <h2 className="  md:text-[1.1vw] text-sm text-gray-400">{dept}</h2>
+//       </div>
+//       {/* hide status and employed on mobile */}
+//       <h2 className="hidden sm:block">{status}</h2>
+//       <h2 className="hidden sm:block">{employed}</h2>
+//       {/* hide edit button on mobile */}
+//       <div className="flex justify-center hidden sm:flex">{button}</div>
+//     </div>
+//   );
+// };
 
 const Table = () => {
   const projectData: ProjectRowProps[] = [
@@ -262,7 +262,7 @@ const Table = () => {
                     <h2 className="truncate md:block hidden ">{proj.gmail}</h2>
                   </div>
                 </div>
-                <div className="flex flex-col text-center md:text-left md:text-[1vw] text-sm">
+                <div className="flex flex-col text-center md:text-[1vw] text-sm">
                   <h2>{proj.role}</h2>
                   <h2 className="md:text-[1.1vw] text-sm text-gray-400">
                     {proj.dept}
