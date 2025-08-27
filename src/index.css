@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+body {
+  background-image: url(istockphoto-1423074863-612x612.jpg);
+  background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+@media screen  {
+  
+}
