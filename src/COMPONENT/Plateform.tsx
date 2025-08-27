@@ -76,7 +76,7 @@ const PlatformSettings: React.FC<Record<string, never>> = () => {
       </h2>
 
       <section>
-        <h3 className="font-medium lg:text-[.85vw] text-[7px] md:my-[.75vw] md:mt-[.75vw] mt-2 md:mb-[.4vw] mb-1 text-gray-400">
+        <h3 className="font-medium lg:text-[.85vw] text-[12px] md:my-[.75vw] md:mt-[.75vw] mt-2 md:mb-[.4vw] mb-1 text-gray-400">
           Account
         </h3>
         <div>
@@ -91,7 +91,7 @@ const PlatformSettings: React.FC<Record<string, never>> = () => {
         </div>
       </section>
       <section>
-        <h3 className="font-medium lg:text-[.85vw] text-[7px]  md:mt-[.4vw] mt-1 md:mb-[.4vw] mb-1 text-gray-400">
+        <h3 className="font-medium lg:text-[.85vw] text-[12px]  md:mt-[.4vw] mt-1 md:mb-[.4vw] mb-1 text-gray-400">
           Application
         </h3>
         <div>

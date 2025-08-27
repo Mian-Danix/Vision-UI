@@ -19,7 +19,6 @@ interface ProjectRowProps2 {
   gmail: string;
   role: string;
   dept: string;
-
   status: React.ReactNode;
   employed: string;
   button: React.ReactNode;
@@ -42,10 +41,12 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
       <h2 className="text-center">{budget}</h2>
       <h2 className="text-center">{status}</h2>
       <h2 className="text-center">{completion}</h2>
-      <div className="flex justify-center">{button}</div>
+      {/* hide three-dot icon on mobile */}
+      <div className="flex justify-center hidden sm:flex">{button}</div>
     </div>
   );
 };
+
 const ProjectRow2: React.FC<ProjectRowProps2> = ({
   src,
   name,
@@ -73,13 +74,15 @@ const ProjectRow2: React.FC<ProjectRowProps2> = ({
         <h2 className="">{role}</h2>
         <h2 className="  md:text-[1.1vw] text-sm text-gray-400">{dept}</h2>
       </div>
-      <h2>{status}</h2>
-      <h2>{employed}</h2>
-
-      <div className="flex justify-center">{button}</div>
+      {/* hide status and employed on mobile */}
+      <h2 className="hidden sm:block">{status}</h2>
+      <h2 className="hidden sm:block">{employed}</h2>
+      {/* hide edit button on mobile */}
+      <div className="flex justify-center hidden sm:flex">{button}</div>
     </div>
   );
 };
+
 const Table = () => {
   const projectData: ProjectRowProps[] = [
     {
@@ -133,6 +136,7 @@ const Table = () => {
       ),
     },
   ];
+
   const projectData2: ProjectRowProps2[] = [
     {
       src: "female.png",
@@ -157,7 +161,6 @@ const Table = () => {
       name: "Alexa Liras",
       role: "Programmer",
       dept: "Developer",
-
       status: (
         <button
           type="button"
@@ -166,11 +169,9 @@ const Table = () => {
           Offline
         </button>
       ),
-
       employed: "14/06/21",
       button: <button type="button">Edit</button>,
     },
-
     {
       src: "micheal.png",
       gmail: "laurent@simmmple.com",
@@ -226,27 +227,56 @@ const Table = () => {
 
   return (
     <section>
+      {/* First Table */}
       <div className="md:mt-[1.25vw] mb-4 md:col-span-6 bg-[linear-gradient(126.97deg,rgba(6,11,40,0.74)_28.26%,rgba(10,14,35,0.71)_91.2%)] md:p-[1.25vw] p-4 sm:p-6 rounded-2xl shadow-md">
         <header className="flex flex-col sm:flex-row sm:justify-between sm:items-center  md:gap-[.75vw] gap-2">
           <div>
-            <h2 className="text-white  md:text-[1.4vw] text-lg sm:text-xl font-semibold">
+            <h2 className="text-white text-xs  md:text-[1.4vw] font-semibold">
               Authors Table
             </h2>
-            <div className="flex items-center  md:gap-[.75vw] gap-2 text-gray-300  md:text-[1vw] text-xs sm:text-sm"></div>
           </div>
         </header>
 
         <div className="md:mt-[1.25vw] mt-4 w-full">
-          <div className="grid grid-cols-6 md:text-[1vw] sm:text-xs md:text-sm text-gray-400 font-semibold uppercase tracking-wide">
-            <h2 className="col-span-2 text-left">AUTHOR</h2>
-            <h2>Function</h2>
-            <h2>Status</h2>
-            <h2>Employed</h2>
-          </div>{" "}
+          {/* Adjusted grid for spacing */}
+          <div className="grid grid-cols-3 md:grid-cols-6 md:text-[1vw] text-sm text-gray-400 font-semibold uppercase tracking-wide">
+            <h2 className="text-left">AUTHOR</h2>
+            <h2 className="text-center">Function</h2>
+            {/* Status hidden on mobile */}
+            <h2 className="hidden md:block text-center">Status</h2>
+            <h2 className="text-right">Employed</h2>
+          </div>
           <hr className="border-gray-600 md:my-[1vw] my-3" />
+
           {projectData2.map((proj, i) => (
             <React.Fragment key={i}>
-              <ProjectRow2 {...proj} />
+              <div className="grid grid-cols-3 md:grid-cols-6 md:py-[1vw] py-3 md:text-[1vw] text-[10px] text-white items-center">
+                <div className="flex items-center md:gap-[.75vw] gap-2 md:text-[1vw] text-sm">
+                  <img
+                    src={proj.src}
+                    alt=""
+                    className="md:h-[3vw] h-10 md:w-[3vw] w-10 rounded-md object-cover"
+                  />
+                  <div>
+                    <h2 className="truncate">{proj.name}</h2>
+                    <h2 className="truncate md:block hidden ">{proj.gmail}</h2>
+                  </div>
+                </div>
+                <div className="flex flex-col text-center md:text-left md:text-[1vw] text-sm">
+                  <h2>{proj.role}</h2>
+                  <h2 className="md:text-[1.1vw] text-sm text-gray-400">
+                    {proj.dept}
+                  </h2>
+                </div>
+                {/* Status hidden on mobile */}
+                <h2 className="hidden md:block text-center">{proj.status}</h2>
+                <h2 className="text-right">{proj.employed}</h2>
+                {/* Edit button hidden on mobile */}
+                <div className="flex justify-center hidden md:flex">
+                  {proj.button}
+                </div>
+              </div>
+
               {i !== projectData.length - 1 && (
                 <hr className="border-gray-600 md:my-[1vw] my-3" />
               )}
@@ -255,10 +285,11 @@ const Table = () => {
         </div>
       </div>
 
+      {/* Second Table */}
       <div className="md:col-span-6 bg-[linear-gradient(126.97deg,rgba(6,11,40,0.74)_28.26%,rgba(10,14,35,0.71)_91.2%)] md:p-[1.25vw] p-4 sm:p-6 rounded-2xl shadow-md">
         <header className="flex flex-col sm:flex-row sm:justify-between sm:items-center  md:gap-[.75vw] gap-2">
           <div>
-            <h2 className="text-white  md:text-[1.4vw] text-lg sm:text-xl font-semibold">
+            <h2 className="text-white text-sm mb-1 md:mt-[.4vw] md:text-[1.4vw] font-semibold">
               Projects
             </h2>
             <div className="flex items-center  md:gap-[.75vw] gap-2 text-gray-300  md:text-[1vw] text-xs sm:text-sm">
@@ -269,7 +300,7 @@ const Table = () => {
         </header>
 
         <div className="md:mt-[1.25vw] mt-4 w-full">
-          <div className="grid grid-cols-6 md:text-[1vw] sm:text-xs md:text-sm text-gray-400 font-semibold uppercase tracking-wide">
+          <div className="grid grid-cols-6 md:text-[1vw] text-xs text-gray-400 font-semibold uppercase tracking-wide">
             <h2 className="col-span-2 text-left">Companies</h2>
             <h2 className="text-center">Budget</h2>
             <h2 className="text-center">Status</h2>

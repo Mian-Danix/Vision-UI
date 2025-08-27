@@ -23,24 +23,31 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
   completion,
 }) => {
   return (
-    <div className="grid grid-cols-5 md:py-[.4vw] py-1 text-[10px] sm:text-sm md:text-base text-white items-center">
-      <div className="flex items-center md:text-[1.1vw]  md:gap-[.75vw] gap-2 col-span-2">
+    <div className="grid grid-cols-4 md:grid-cols-5 md:py-[.4vw] py-1 text-[10px] sm:text-sm md:text-base text-white items-center">
+      {/* Company */}
+      <div className="flex items-center md:text-[1.1vw] md:gap-[.75vw] gap-2 col-span-2">
         {icon}
-        <span className="truncate">{title}</span>
+        <span className="truncate md:text-[1.1vw] text-xs">{title}</span>
       </div>
-      <div className="flex md:h-[2vw] ">
+
+      {/* Members */}
+      <div className="flex md:h-[2vw]">
         <img
           src={members}
           alt="members"
-          className=" object-contain"
+          className="object-contain"
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = "none";
           }}
         />
       </div>
-      <h2 className="md:text-[1vw] text-base">{budget}</h2>
+
+      {/* Budget (hidden on mobile) */}
+      <h2 className="hidden md:block md:text-[1vw] text-base">{budget}</h2>
+
+      {/* Completion */}
       <div className="w-[80%]">
-        <h2 className="md:text-[1vw] text-base">{completion}</h2>
+        <h2 className="md:text-[1vw] text-xs">{completion}</h2>
         <Lines width={60} />
       </div>
     </div>
@@ -94,14 +101,15 @@ const Project: React.FC = () => {
   ];
 
   return (
-    <section className="flex flex-col md:grid md:grid-cols-9  md:gap-[1.25vw] gap-4 md:m-[1.25vw] m-4">
+    <section className="flex flex-col md:grid md:grid-cols-9 md:gap-[1.25vw] gap-4 md:m-[1.25vw] m-4">
+      {/* Projects Table */}
       <div className="md:col-span-6 bg-[linear-gradient(126.97deg,rgba(6,11,40,0.74)_28.26%,rgba(10,14,35,0.71)_91.2%)] md:p-[1.25vw] p-4 sm:p-6 rounded-2xl shadow-md">
-        <header className="flex flex-col sm:flex-row sm:justify-between sm:items-center  md:gap-[.75vw] gap-2">
+        <header className="flex justify-between items-center md:gap-[.75vw] gap-2">
           <div>
-            <h2 className="text-white  md:text-[1.4vw] text-lg sm:text-xl font-semibold">
+            <h2 className="text-white md:text-[1.4vw] text-lg sm:text-xl font-semibold">
               Projects
             </h2>
-            <div className="flex items-center  md:gap-[.75vw] gap-2 text-gray-300  md:text-[1vw] text-xs sm:text-sm">
+            <div className="flex items-center md:gap-[.75vw] gap-2 text-gray-300 md:text-[1vw] text-xs sm:text-sm">
               <MdVerified className="text-green-600" />
               <p>30 done this month</p>
             </div>
@@ -109,15 +117,19 @@ const Project: React.FC = () => {
           <IoEllipsisVertical className="text-xl sm:text-2xl text-gray-300 cursor-pointer" />
         </header>
 
+        {/* Table Header */}
         <div className="md:mt-[1.25vw] mt-4 w-full">
-          <div className="grid grid-cols-5 md:text-[1vw] sm:text-xs md:text-sm text-gray-400 font-semibold uppercase tracking-wide">
-            <h2 className="col-span-2 text-left">Companies</h2>
-            <h2>Members</h2>
-            <h2>Budget</h2>
-            <h2>Completion</h2>
+          <div className="grid grid-cols-4 md:grid-cols-5 md:text-[1vw] sm:text-xs md:text-sm text-gray-400 font-semibold uppercase tracking-wide">
+            <h2 className="col-span-2 text-left md:text-base text-sm">
+              Companies
+            </h2>
+            <h2 className="md:text-base text-sm">Members</h2>
+            <h2 className="hidden md:block md:text-base text-sm">Budget</h2>
+            <h2 className="md:text-base text-sm">Completion</h2>
           </div>
           <hr className="border-gray-600 md:my-[1vw] my-3" />
 
+          {/* Table Rows */}
           {projectData.map((proj, i) => (
             <React.Fragment key={i}>
               <ProjectRow {...proj} />
@@ -129,6 +141,7 @@ const Project: React.FC = () => {
         </div>
       </div>
 
+      {/* Orders Section */}
       <div className="md:col-span-3 w-full">
         <OrderOverview />
       </div>
